@@ -1,96 +1,78 @@
 const express = require('express');
 const router = express.Router();
-const Log = require('../models/logs');
-const FoodLog = require('../models/foodlogs');
+const Log = require('../models/logsModels');
 
 // Index route for logs
 router.get('/', (req, res) => {
     Log.find({}, (err, logs) => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
             res.render('Logs/Index', { logs });
         }
     });
 });
 
-// Index route for food logs
-router.get('/foodlogs', (req, res) => {
-    FoodLog.find({}, (err, foodLogs) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('FoodLogs/Index', { foodLogs });
-        }
-    });
-});
-
-
-// New route
+// New route for logs
 router.get('/new', (req, res) => {
-    res.render('New');
+    res.render('Logs/New');
 });
 
-// Create route
+// Create route for logs
 router.post('/', (req, res) => {
     Log.create(req.body, (err, log) => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
             res.redirect(`/logs/${log._id}`);
         }
     });
 });
 
-// Index route
-router.get('/', (req, res) => {
-    Log.find({}, (err, logs) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render('Index', { logs });
-        }
-    });
-});
-
-// Show route
+// Show route for logs
 router.get('/:id', (req, res) => {
     Log.findById(req.params.id, (err, log) => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
-            res.render('Show', { log });
+            res.render('Logs/Show', { log });
         }
     });
 });
 
-// Edit route
+// Edit route for logs
 router.get('/:id/edit', (req, res) => {
     Log.findById(req.params.id, (err, log) => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
-            res.render('Edit', { log });
+            res.render('Logs/Edit', { log });
         }
     });
 });
 
-// Update route
+// Update route for logs
 router.put('/:id', (req, res) => {
     Log.findByIdAndUpdate(req.params.id, req.body, (err, log) => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
             res.redirect(`/logs/${log._id}`);
         }
     });
 });
 
-// Delete route
+// Delete route for logs
 router.delete('/:id', (req, res) => {
     Log.findByIdAndRemove(req.params.id, err => {
         if (err) {
             console.log(err);
+            res.status(500).send('Internal Server Error');
         } else {
             res.redirect('/logs');
         }
@@ -98,3 +80,5 @@ router.delete('/:id', (req, res) => {
 });
 
 module.exports = router;
+
+
