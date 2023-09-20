@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const FoodLog = require('./models/foodlogs');
 
-mongoose.connect('mongodb://localhost:27017/captains_log', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://adhudsond:WroQGBFl11ZC6ZnS@cluster0.8n1kphs.mongodb.net/captainslog', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const foodLogs = [
     { foodItem: 'Apple', quantity: 1, mealTime: 'Breakfast' },

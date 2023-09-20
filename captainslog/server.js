@@ -6,7 +6,7 @@ const jsx = require('jsx-view-engine');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/captains_log', {
+mongoose.connect('mongodb+srv://adhudsond:WroQGBFl11ZC6ZnS@cluster0.8n1kphs.mongodb.net/captainslog', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
